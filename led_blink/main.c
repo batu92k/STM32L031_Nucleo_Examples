@@ -21,6 +21,7 @@
   */
 int main()
 {
+	int32_t i = 0; // general purpose counter
 	
   System_ClockConfiguration(); // system clock configuration
 	
@@ -28,6 +29,16 @@ int main()
 	
 	while(1)
 	{
+		
+		LL_GPIO_TogglePin(GPIOB, LL_GPIO_PIN_3); // toggle LED
+		
+		i = 1500000;
+		
+		/* basic delay */
+		while(i)
+		{
+			i--;
+		}
 		
 	}
 
