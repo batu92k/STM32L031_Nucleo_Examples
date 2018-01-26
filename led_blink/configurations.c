@@ -41,6 +41,7 @@ void System_ClockConfiguration(void)
 	/* peripheral clock divide value configuraiton */
 	LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1); 
 	LL_RCC_SetAPB1Prescaler(LL_RCC_SYSCLK_DIV_1);	
+	LL_RCC_SetAPB2Prescaler(LL_RCC_SYSCLK_DIV_2);	
 	
 	SystemCoreClockUpdate(); // system clock updating
 }
