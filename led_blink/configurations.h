@@ -13,7 +13,7 @@
 #define CONFIGURATIONS_H
 
 void System_ClockConfiguration(void);
-
+void LED3_Init(void);
 
 
 #endif
