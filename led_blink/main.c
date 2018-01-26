@@ -21,7 +21,10 @@
   */
 int main()
 {
-
+	
+  System_ClockConfiguration(); // system clock configuration
+	
+	LED3_Init(); // onboard led init
 	
 	while(1)
 	{
