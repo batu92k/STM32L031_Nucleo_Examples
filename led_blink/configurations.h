@@ -12,7 +12,7 @@
 #ifndef CONFIGURATIONS_H
 #define CONFIGURATIONS_H
 
-
+void System_ClockConfiguration(void);
 
 
 
