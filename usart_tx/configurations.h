@@ -14,6 +14,6 @@
 
 void System_ClockConfiguration(void);
 void LED3_Init(void);
-
+void USART2_Init(void);
 
 #endif
