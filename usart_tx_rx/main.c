@@ -18,7 +18,7 @@
 int main(void)
 {
 	
-	
+	/* main loop */
 	while(1)
 	{
 		
