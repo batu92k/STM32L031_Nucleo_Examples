@@ -9,6 +9,7 @@
   */
 	
 #include "stm32l0xx.h" // Device header
+#include "configurations.h" // configurations header
 
 /**
   * @brief  Program entry point
@@ -17,6 +18,10 @@
   */
 int main(void)
 {
+	
+	System_ClockConfiguration(); // system clock configuration 
+	
+	LED3_Init(); // on board LED initialization
 	
 	/* main loop */
 	while(1)
