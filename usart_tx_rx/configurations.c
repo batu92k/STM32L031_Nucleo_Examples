@@ -15,6 +15,7 @@
 #include "stm32l0xx_ll_bus.h" // Bus header
 #include "stm32l0xx_ll_usart.h" // USART header
 #include "configurations.h" // Congiurations header
+#include "handlers.h" // interrupt handlers header
 
 /**
   * @brief  This function configurates the system clock as:
