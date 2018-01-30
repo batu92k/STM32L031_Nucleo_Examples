@@ -108,6 +108,7 @@ void USART2_Init(void)
 	LL_RCC_SetUSARTClockSource(LL_RCC_USART2_CLKSOURCE_SYSCLK); // define usart clocksource as system clock
 	
 	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2); // clock freq activated for USART2 peripheral
+	LL_APB2_GRP1_DisableClock(LL_APB2_GRP1_PERIPH_SYSCFG); // it was decided that its necessary after the tests
 	
 	/* USART initialization struct configurations */
 	LL_Usart_InitStruct.BaudRate = 115200;
