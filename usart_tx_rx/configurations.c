@@ -76,31 +76,37 @@ void USART2_Init(void)
 {
 	LL_USART_InitTypeDef LL_Usart_InitStruct; // USART initialization struct	
 	LL_GPIO_InitTypeDef LL_GPIO_Initstruct; // GPIO initialization struct
-	
-	
+
 	LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA); // Clock freq activated for GPIOA peripheral
 	
 	/* GPIO pin configuration */
 	LL_GPIO_Initstruct.Alternate = LL_GPIO_AF_4;
 	LL_GPIO_Initstruct.Mode = LL_GPIO_MODE_ALTERNATE;
 	LL_GPIO_Initstruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_2; // Tx Pin
+	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_9; // Tx Pin
 	LL_GPIO_Initstruct.Pull = LL_GPIO_PULL_UP;
-	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_HIGH;
+	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
 	
 	LL_GPIO_Init(GPIOA, &LL_GPIO_Initstruct);	// GPIO pin initialize
 	
-	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_3; // Rx Pin
+	LL_GPIO_Initstruct.Alternate = LL_GPIO_AF_4;
+	LL_GPIO_Initstruct.Mode = LL_GPIO_MODE_ALTERNATE;
+	LL_GPIO_Initstruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_10; // Rx Pin
+	LL_GPIO_Initstruct.Pull = LL_GPIO_PULL_UP;
+	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
 	
 	LL_GPIO_Init(GPIOA, &LL_GPIO_Initstruct);	// GPIO pin initialize
+
 
 	/* Important: we need to disable related USART first in order to write 
 	 * USART segisters properly! */
 	LL_USART_Disable(USART2);
+	LL_USART_DeInit(USART2);
 	
 	LL_RCC_SetUSARTClockSource(LL_RCC_USART2_CLKSOURCE_SYSCLK); // define usart clocksource as system clock
 	
-	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2); // Clock freq activated for USART2 peripheral
+	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2); // clock freq activated for USART2 peripheral
 	
 	/* USART initialization struct configurations */
 	LL_Usart_InitStruct.BaudRate = 115200;
@@ -108,10 +114,19 @@ void USART2_Init(void)
 	LL_Usart_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
 	LL_Usart_InitStruct.Parity = LL_USART_PARITY_NONE;
 	LL_Usart_InitStruct.StopBits = LL_USART_STOPBITS_1;
-	LL_Usart_InitStruct.TransferDirection = LL_USART_TXRX_STANDARD;
+	LL_Usart_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
 	
-	LL_USART_Init(USART2, &LL_Usart_InitStruct); // edit USART registers from related struct
+	LL_USART_Init(USART2, &LL_Usart_InitStruct); // edit USART registers from related struct	
 	
+	/* NVIC Configuration */
+	__NVIC_DisableIRQ(USART2_IRQn);
+	__NVIC_ClearPendingIRQ(USART2_IRQn);
+	__NVIC_SetPriority(USART2_IRQn, 1);
+	__NVIC_SetVector(USART2_IRQn, USART2_IRQn);
+	__NVIC_EnableIRQ(USART2_IRQn);	
+
+  LL_USART_EnableIT_RXNE(USART2); // Rx buffer not empty interrupt enable
+
 	LL_USART_Enable(USART2); // enable USART
 
 }
