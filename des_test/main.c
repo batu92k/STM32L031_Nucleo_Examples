@@ -116,6 +116,6 @@ int main()
 			}
 		}		
 		
-	}
+	} // main loop
 	
 }
