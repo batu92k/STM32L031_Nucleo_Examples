@@ -12,6 +12,7 @@
 #ifndef USART_FUNCTIONS_H
 #define USART_FUNCTIONS_H
 
+#include "stm32l0xx_ll_usart.h" // USART driver header	
 #include "usart_functions.h" // USART driver header
 
 void USART_Puts(USART_TypeDef* USARTx, volatile char *s);
