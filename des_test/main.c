@@ -32,7 +32,18 @@ int main()
 {
 	System_ClockConfiguration(); // system clock configuration
 	
+	uint32_t i = 0; // general purpose counter
+	uint8_t clean_cnt = 0; // array clear counter
 	
+	/* The arrays that will use in the DES routine defined */
+	uint64_t plainText[DataLenght] = { 0x123456789ABCDEF, 0x023456789ABCDEF, 0x103456789ABCDEF, 0x120456789ABCDEF, 0x123456789ABCDEF};
+	uint64_t cipherText[DataLenght];
+	uint64_t decryptedText[DataLenght];
+
+	/* DES structure configured */
+	DES_InitStructure.Key = 0x16645779CCBCDFF1;
+	DES_InitStructure.IV = 0xFCAEBBCCEE234FF1;
+	DES_InitStructure.Mode = CBC;		
 	
 	LED3_Init(); // Onboard LED initialization
 	
@@ -40,6 +51,23 @@ int main()
 	
 	while(1)
 	{
+	
+		DES_Encrypt_Data(&DES_InitStructure, plainText, cipherText, DataLenght); // DES encryption routine
+		DES_Decrypt_Data(&DES_InitStructure, cipherText, decryptedText, DataLenght); // DES decryption routine
+    
+		/* plain text transmitting routine */
+		for(i = 0; i < DataLenght; i++)
+		{
+			sprintf((char*)buffer_string, "Plain Text %d: %llx\n", i ,plainText[i]);
+			USART_Puts(USART2, buffer_string);	
+			
+			/* array cleared after the transmiting process completed */
+			for(clean_cnt = 0; clean_cnt < MAX_STRLEN; clean_cnt++)
+			{
+				buffer_string[clean_cnt] = NULL;
+			}		
+			
+		}
 		
 	}
 	
