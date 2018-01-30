@@ -19,10 +19,20 @@
 #include "handlers.h" // Interrupt handers header
 #include "des_module.h" // Data Encryption Standart module
 
+DES_InitTypedef DES_InitStructure; // DES initialization structure
+
+#define DataLenght 5 // data array lenght
+
+#define MAX_STRLEN 30 // max character number of buffer array
+
+volatile char buffer_string[MAX_STRLEN+1]; // buffer string
+
 
 int main()
 {
 	System_ClockConfiguration(); // system clock configuration
+	
+	
 	
 	LED3_Init(); // Onboard LED initialization
 	
