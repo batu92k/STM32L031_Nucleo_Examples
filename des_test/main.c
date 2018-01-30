@@ -27,7 +27,11 @@ DES_InitTypedef DES_InitStructure; // DES initialization structure
 
 volatile char buffer_string[MAX_STRLEN+1]; // buffer string
 
-
+/**
+  * @brief  Program entry point
+	* @param  none
+  * @retval none
+  */
 int main()
 {
 	System_ClockConfiguration(); // system clock configuration
@@ -58,7 +62,7 @@ int main()
 		/* plain text transmitting routine */
 		for(i = 0; i < DataLenght; i++)
 		{
-			sprintf((char*)buffer_string, "Plain Text %d: %llx\n", i ,plainText[i]);
+			sprintf((char*)buffer_string, "Plain Text %d: %016llx\n", i ,plainText[i]);
 			USART_Puts(USART2, buffer_string);	
 			
 			/* array cleared after the transmiting process completed */
@@ -68,6 +72,49 @@ int main()
 			}		
 			
 		}
+		
+		/* cipher text transmitting routine */
+		for(i = 0; i < DataLenght; i++)
+		{
+			sprintf((char*)buffer_string,"Cipher Text %d: %016llx\n", i, cipherText[i]);
+			USART_Puts(USART2, buffer_string);	
+			
+			/* array cleared after the transmiting process completed */
+			for(clean_cnt = 0; clean_cnt < MAX_STRLEN; clean_cnt++)
+			{
+				buffer_string[clean_cnt] = NULL;
+			}				
+			
+		}
+		
+		/* decrypted text transmitting routine */
+		for(i = 0; i < DataLenght; i++)
+		{
+			if(plainText[i] == decryptedText[i])
+			{
+				sprintf((char*)buffer_string,"Decrypted Text %d: %016llx - OK\n", i, decryptedText[i]);
+				USART_Puts(USART2, buffer_string);	
+				
+				/* array cleared after the transmiting process completed */
+				for(clean_cnt = 0; clean_cnt < MAX_STRLEN; clean_cnt++)
+				{
+					buffer_string[clean_cnt] = NULL;
+				}	
+				
+			}
+			else
+			{
+				sprintf((char*)buffer_string,"Decrypted Text %d: %016llx - F\n", i, decryptedText[i]);
+				USART_Puts(USART2, buffer_string);
+				
+				/* array cleared after the transmiting process completed */
+				for(clean_cnt = 0; clean_cnt < MAX_STRLEN; clean_cnt++)
+				{
+					buffer_string[clean_cnt] = NULL;
+				}					
+							
+			}
+		}		
 		
 	}
 	
