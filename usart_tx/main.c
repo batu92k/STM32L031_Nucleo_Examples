@@ -7,16 +7,19 @@
   * @brief   main program source file
   ******************************************************************************
   */
-	
-#include "stm32l0xx.h" // Device header
-#include "stdio.h" // standard IO header
-#include "stm32l0xx_ll_usart.h" // USART driver header
-#include "stm32l0xx_ll_gpio.h" // GPIO header
+
 #include "configurations.h" // Configurations header
-#include "usart_functions.h" // USART functions header
+#include "usart_functions.h" // Usart functions header
+#include "stm32l0xx_ll_rcc.h" // Reset and Control Clock header
+#include "stm32l0xx_ll_pwr.h" // Power header
+#include "stm32l0xx_ll_gpio.h" // GPIO header
+#include "stm32l0xx_ll_bus.h" // Bus header
+#include "stm32l0xx_ll_usart.h" // USART header
+#include "stm32l0xx.h" // Device header
+#include "stdio.h"
 
 char str[50]; // USART buffer string
-int32_t i = 0; // general purpose
+
 
 /**
   * @brief  Program entry point
@@ -25,6 +28,7 @@ int32_t i = 0; // general purpose
   */
 int main()
 {
+	int32_t i = 0; // general purpose
 	
 	System_ClockConfiguration(); // configurate system clock
 	

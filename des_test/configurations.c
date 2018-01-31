@@ -26,7 +26,7 @@
   */
 void System_ClockConfiguration(void)
 {
-	LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1); // regulator configuraiton in order to freq
+	LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE3); // regulator configuraiton in order to freq
 	
 	/* high speed internal (HSI - 16MHz) system clock avtivating
    * in order to use for PLL source clock	*/
@@ -42,7 +42,7 @@ void System_ClockConfiguration(void)
 	/* peripheral clock divide value configuraiton */
 	LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1); 
 	LL_RCC_SetAPB1Prescaler(LL_RCC_SYSCLK_DIV_1);	
-	LL_RCC_SetAPB2Prescaler(LL_RCC_SYSCLK_DIV_2);	
+	LL_RCC_SetAPB2Prescaler(LL_RCC_SYSCLK_DIV_1);	
 	
 	SystemCoreClockUpdate(); // system clock updating
 }

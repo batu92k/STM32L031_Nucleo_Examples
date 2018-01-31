@@ -25,7 +25,7 @@
   */
 void System_ClockConfiguration(void)
 {
-	LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1); // regulator configuraiton in order to freq
+	LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE3); // regulator configuraiton in order to freq
 	
 	/* high speed internal (HSI - 16MHz) system clock avtivating
    * in order to use for PLL source clock	*/
@@ -41,7 +41,7 @@ void System_ClockConfiguration(void)
 	/* peripheral clock divide value configuraiton */
 	LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1); 
 	LL_RCC_SetAPB1Prescaler(LL_RCC_SYSCLK_DIV_1);	
-	LL_RCC_SetAPB2Prescaler(LL_RCC_SYSCLK_DIV_2);	
+	LL_RCC_SetAPB2Prescaler(LL_RCC_SYSCLK_DIV_1);	
 	
 	SystemCoreClockUpdate(); // system clock updating
 }
@@ -84,13 +84,18 @@ void USART2_Init(void)
 	LL_GPIO_Initstruct.Alternate = LL_GPIO_AF_4;
 	LL_GPIO_Initstruct.Mode = LL_GPIO_MODE_ALTERNATE;
 	LL_GPIO_Initstruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_2; // Tx Pin
+	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_9; // Tx Pin
 	LL_GPIO_Initstruct.Pull = LL_GPIO_PULL_UP;
-	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_HIGH;
+	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
 	
 	LL_GPIO_Init(GPIOA, &LL_GPIO_Initstruct);	// GPIO pin initialize
 	
-	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_3; // Rx Pin
+	LL_GPIO_Initstruct.Alternate = LL_GPIO_AF_4;
+	LL_GPIO_Initstruct.Mode = LL_GPIO_MODE_ALTERNATE;
+	LL_GPIO_Initstruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+	LL_GPIO_Initstruct.Pin = LL_GPIO_PIN_10; // Rx Pin
+	LL_GPIO_Initstruct.Pull = LL_GPIO_PULL_UP;
+	LL_GPIO_Initstruct.Speed = LL_GPIO_SPEED_FREQ_HIGH;
 	
 	LL_GPIO_Init(GPIOA, &LL_GPIO_Initstruct);	// GPIO pin initialize
 
