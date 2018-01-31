@@ -2,8 +2,10 @@
 
 ### Hakkında
 
-- Bu repository, STM32L031 Nucleo kiti için tasarlanmış örnek uygulamalar içermektedir.
-- Projeler içerisindeki uygulamalarda HAL (Hardware Abstraction Layer) kütüphaneleri yerine LL (Low Level) kütüphaneler kullanımıştır.
+- Bu repository, STM32L031 Nucleo kiti için tasarlanmış örnek uygulamalar içermektedir
+- Projeler içerisindeki uygulamalarda HAL (Hardware Abstraction Layer) kütüphaneleri yerine LL (Low Level) kütüphaneler kullanımıştır
+- Örnek projelerin çalıştırılması için gerekli tüm cihaz sürücüleri "DRIVERS" klasörü içindedir
+- Sürücülere ait bilgiler, reference manual ve datasheet ile KEIL IDE ortamı için gerekli proje ayarları "Documents" klasörü içerisindedir
 
 ### Örnek Projeler
 
@@ -22,6 +24,8 @@
 
 - This repository includes example KEIL projects for STM32L031 Nucleo board
 - Low Level Drivers (LL) is used in the applications of this repository, instead of HAL (Hardware Abstraction Layer) Drivers
+- All of the device drivers used in the applications are placed in the "DRIVERS" folder
+- Information about drivers, reference manual, datasheet and the project options for KEIL IDE are placed in the "Documents" folder
 
 ### Exapmle Projects
 
