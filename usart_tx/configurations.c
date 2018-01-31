@@ -76,8 +76,7 @@ void USART2_Init(void)
 {
 	LL_USART_InitTypeDef LL_Usart_InitStruct; // USART initialization struct	
 	LL_GPIO_InitTypeDef LL_GPIO_Initstruct; // GPIO initialization struct
-	
-	
+
 	LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA); // Clock freq activated for GPIOA peripheral
 	
 	/* GPIO pin configuration */
@@ -99,13 +98,15 @@ void USART2_Init(void)
 	
 	LL_GPIO_Init(GPIOA, &LL_GPIO_Initstruct);	// GPIO pin initialize
 
+
 	/* Important: we need to disable related USART first in order to write 
 	 * USART segisters properly! */
 	LL_USART_Disable(USART2);
+	LL_USART_DeInit(USART2);
 	
 	LL_RCC_SetUSARTClockSource(LL_RCC_USART2_CLKSOURCE_SYSCLK); // define usart clocksource as system clock
 	
-	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2); // Clock freq activated for USART2 peripheral
+	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART2); // clock freq activated for USART2 peripheral
 	
 	/* USART initialization struct configurations */
 	LL_Usart_InitStruct.BaudRate = 115200;
@@ -113,10 +114,10 @@ void USART2_Init(void)
 	LL_Usart_InitStruct.HardwareFlowControl = LL_USART_HWCONTROL_NONE;
 	LL_Usart_InitStruct.Parity = LL_USART_PARITY_NONE;
 	LL_Usart_InitStruct.StopBits = LL_USART_STOPBITS_1;
-	LL_Usart_InitStruct.TransferDirection = LL_USART_TXRX_STANDARD;
+	LL_Usart_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
 	
-	LL_USART_Init(USART2, &LL_Usart_InitStruct); // edit USART registers from related struct
-	
+	LL_USART_Init(USART2, &LL_Usart_InitStruct); // edit USART registers from related struct	
+
 	LL_USART_Enable(USART2); // enable USART
 
 }
