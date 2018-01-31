@@ -22,3 +22,9 @@ After some tests I fixed the problem, now everything works as I expected. What d
  - I added the USART RXNE interrupt enable function after the NVIC configuration
  - I disabled the SYSCFG clock (I dont know how it solves the problem but it works for me). I founded it during my tests.
  - I checked the "use memory layout from target dialog" seciton at the Linker tab in the Options of KEIL IDE (I examined ST's exapmle projects    and then I noticed it was checked).
+
+--------------------------------------
+Precise Solution 31.01.2018
+*********************************
+
+I noticed that all of the problem caused by the KEIL's compiler's "optimization" mode. When I saw the optimization mode setting at the C/C++ section which is inside the Options for target menu, it was set as Level "0". Then I changed the value as <default> and everything works perfect!
