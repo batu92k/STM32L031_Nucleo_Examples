@@ -7,6 +7,8 @@
 - Örnek projelerin çalıştırılması için gerekli tüm cihaz sürücüleri "DRIVERS" klasörü içindedir
 - Sürücülere ait bilgiler, reference manual ve datasheet ile KEIL IDE ortamı için gerekli proje ayarları "Documents" klasörü içerisindedir
 
+#### Not: Başlamadan önce "Documents" klasörü içerisinde yer alan "options for KEIL" içerisindeki görselleri incelemenizi tavsiye ederim.
+
 ### Örnek Projeler
 
  - #### LED_BLINK
@@ -26,6 +28,8 @@
 - Low Level Drivers (LL) is used in the applications of this repository, instead of HAL (Hardware Abstraction Layer) Drivers
 - All of the device drivers used in the applications are placed in the "DRIVERS" folder
 - Information about drivers, reference manual, datasheet and the project options for KEIL IDE are placed in the "Documents" folder
+
+#### Note: I suggest you to take a look at the images in the "options for KEIL" folder which is located in the "Documents".
 
 ### Exapmle Projects
 
